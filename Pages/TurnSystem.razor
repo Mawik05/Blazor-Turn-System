@@ -1,0 +1,97 @@
+@page "/turnsystem"
+@using System.Globalization
+
+<PageTitle>Turn System</PageTitle>
+
+<h1>Turn System</h1>
+
+<label>Amount of weeks to display: </label>
+<input class="weeks-input" type="number" @bind="weeksToDisplay">
+<button class="update-btn" @onclick="loadCoffeeList">Update</button>
+
+<hr>
+
+<ul>
+    @foreach (var person in people) {
+        <li class="@(people[0] == person ? "current-turn" : "")">
+            <p>Week: @person.week - @person.name</p>
+        </li>
+    }
+    
+    <li class="current-turn" hidden="@(!listEmpty)">The current list is empty! Please generate a new list.</li>
+</ul>
+
+
+
+@code {
+    private List<Person> people = new();
+    private int weeksToDisplay = 10;
+    private bool listEmpty = false;
+
+    private int weekNumber = new GregorianCalendar(GregorianCalendarTypes.Localized).GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+    // Delete first and second line from CoffeeList, skipping to the next person
+    private void nextPerson() {
+        List<string> coffeeList=File.ReadAllLines($"{System.IO.Directory.GetCurrentDirectory()}{@"\wwwroot\NextList.txt"}").ToList();
+
+        coffeeList.RemoveAt(0);
+        coffeeList.RemoveAt(0);
+        
+        File.WriteAllLines($"{System.IO.Directory.GetCurrentDirectory()}{@"\wwwroot\NextList.txt"}", coffeeList.ToArray());
+
+        loadCoffeeList();
+    }
+
+
+    // Loads and puts CoffeeList.txt into a list
+    private void loadCoffeeList() {
+        // Reset the current list and grab the file CoffeeList.txt
+        people.Clear();
+        var txtfile = System.IO.File.ReadAllLines($"{System.IO.Directory.GetCurrentDirectory()}{@"\wwwroot\NextList.txt"}");
+        
+        // This code makes sure to not display more items than there are in the list
+        var display = weeksToDisplay;
+
+        if (display > txtfile.Length/2) {
+            display = txtfile.Length/2;
+        }
+
+
+        // Go through each line in the CoffeeList.txt file and puts it in a list
+        if (display >= 2) {
+            for(var i = 0; i < display*2; i++) {
+                // For every other line add a new person to the people list, the next line contains the week number
+                if (i % 2 == 0) {
+                    people.Add(new Person { name = txtfile[i] });
+
+                } else {
+                    people[people.Count-1].week = Int32.Parse(txtfile[i]);
+                }
+            }
+        } 
+            
+
+        // Skips until the current persons week is equal to the current week number
+        try {
+            while ((people[0].week != weekNumber) && (txtfile.Length > 2)) {
+                nextPerson();
+            }
+        } catch {}
+        
+
+        // Display message that the list is empty
+        if (txtfile.Length <= 2) {
+            people.Clear();
+            listEmpty = true;
+        }
+    }
+
+
+    // Function is called when page is loaded
+    protected override async Task OnInitializedAsync() {
+        await Task.Delay(1);
+
+        loadCoffeeList();
+    }
+}
+

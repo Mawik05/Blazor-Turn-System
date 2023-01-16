@@ -1,0 +1,21 @@
+.current-turn[b-i8um651b9v] {
+    font-size: 200%;
+    font-weight: bold;
+    background-color: rgb(230, 230, 230);
+}
+
+.next-btn[b-i8um651b9v] {
+    margin-left: 4%;
+    width: 10%;
+    min-width: 100px;
+}
+
+.update-btn[b-i8um651b9v] {
+    width: 5%;
+    min-width: 100px;
+}
+
+.weeks-input[b-i8um651b9v] {
+    width: 4%;
+    min-width: 50px;
+}

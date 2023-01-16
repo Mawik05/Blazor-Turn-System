@@ -1,0 +1,60 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TurnSystemBlazor
+build_property.RootNamespace = TurnSystemBlazor
+build_property.ProjectDir = C:\Users\mariu\Documents\Blazor\TurnSystemBlazor\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\mariu\Documents\Blazor\TurnSystemBlazor
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/Pages/TurnSystem.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHVyblN5c3RlbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-i8um651b9v
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/Pages/TurnSystemEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHVyblN5c3RlbUVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-jup22sg92l
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-cj6w84rwgu
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-xa9sstzzt1
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mariu/Documents/Blazor/TurnSystemBlazor/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

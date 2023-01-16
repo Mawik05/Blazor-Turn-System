@@ -1,0 +1,21 @@
+.current-turn {
+    font-size: 200%;
+    font-weight: bold;
+    background-color: rgb(230, 230, 230);
+}
+
+.next-btn {
+    margin-left: 4%;
+    width: 10%;
+    min-width: 100px;
+}
+
+.update-btn {
+    width: 5%;
+    min-width: 100px;
+}
+
+.weeks-input {
+    width: 4%;
+    min-width: 50px;
+}

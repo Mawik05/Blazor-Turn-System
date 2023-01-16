@@ -1,0 +1,118 @@
+@page "/editturns"
+
+<PageTitle>Edit Turn System</PageTitle>
+
+<h1>Edit Turn System</h1>
+
+<input class="add-input" placeholder="Add another person" @bind="newPerson">
+<button class="add-input" @onclick="addPerson">Add</button>
+<br>
+<label>Amount of weeks to generate: </label>
+<input class="add-input" type="number" @bind="weeksToGenerate">
+
+<label>How many weeks a year:</label>
+<input class="add-input" type="number" @bind="weeksInAYear">
+<br>
+<button class="generate-btn" @onclick="generateList">Generate new list</button>
+<label>@infoMessage</label>
+<hr>
+
+<ul>
+    @foreach (var person in people) {
+        <li>
+            <button @onclick="() => removePerson(person.id)">Remove person</button>
+            @person.name
+        </li>
+    }
+</ul>
+
+
+
+@code {
+    private List<Person> people = new();
+    private string? newPerson;
+    private string? infoMessage;
+    private int personId = 0;
+    
+    private int weeksInAYear = 52;
+    private int weeksToGenerate = 52;
+
+
+    private void loadPeople() { 
+        // Grab the file People.txt
+        var txtfile = System.IO.File.ReadAllLines($"{System.IO.Directory.GetCurrentDirectory()}{@"\wwwroot\People.txt"}");
+
+        foreach (var loadPerson in txtfile) {
+            // For each line add a new person with their own personId to the people list
+            people.Add(new Person { name = loadPerson, id = personId });
+            personId += 1;
+ 
+        }
+    }
+
+
+    private void addPerson() {
+        // Add the person in the "Add another person" text box to the list
+        if (!string.IsNullOrWhiteSpace(newPerson)) {
+            people.Add(new Person { name = newPerson, id = personId });
+            newPerson = string.Empty;
+            personId += 1;
+        }
+    }
+
+
+    private void removePerson(int num) {
+        // Remove the person next to the remove button if the list is not 
+        var itemToRemove = people.Single(r => r.id == num);
+        
+        people.Remove(itemToRemove);
+
+        if (people.Count == 0) {
+            infoMessage = "You cannot have an empty list!";
+            people.Add(new Person { name = "Person", id = personId });
+            personId += 1;
+        }
+    }
+    
+    
+    private void generateList() {
+        // Removes all text in current People file
+        System.IO.File.WriteAllText($"{System.IO.Directory.GetCurrentDirectory()}{@"\wwwroot\People.txt"}", String.Empty);
+
+        // Add the new list to the file
+        foreach (var Person in people) {
+            System.IO.File.AppendAllText($"{System.IO.Directory.GetCurrentDirectory()}{@"\wwwroot\People.txt"}", Person.name + Environment.NewLine);
+        }
+
+        // Code to divide people into different weeks and save to CoffeeList.txt
+        // Divided CoffeeList into two seperate lines to have the week number seperated from the name
+
+        System.IO.File.WriteAllText($"{System.IO.Directory.GetCurrentDirectory()}{@"\wwwroot\CoffeeList.txt"}", String.Empty);
+        var weeks = 1;
+        var personIndex = 0;
+
+        for (var i = 0; i < weeksToGenerate; i++) {
+            var newPersonIndex = personIndex % people.Count;
+
+            System.IO.File.AppendAllText($"{System.IO.Directory.GetCurrentDirectory()}{@"\wwwroot\NextList.txt"}", people[newPersonIndex].name + Environment.NewLine + weeks + Environment.NewLine);
+
+            personIndex++;
+            weeks++;
+
+            // Some years have 53 weeks, therefore we have the weeksInAYear variable
+            if (weeks > weeksInAYear) {
+                weeks -= weeksInAYear;
+            }
+        }
+
+        infoMessage = "Successfully generated a new list!";
+
+    }
+
+
+    protected override async Task OnInitializedAsync() {
+        await Task.Delay(1);
+        
+        loadPeople();
+    }
+}
